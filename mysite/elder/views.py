@@ -40,3 +40,6 @@ def file_test(request):
     return render(request, 'test.html', {'form': form})
 
 
+def bot_callback(request):
+    print request.POST
+    return HttpResponse('hello')

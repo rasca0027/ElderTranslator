@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^upload/', index, name='index'),
     url(r'^test/', file_test),
+    url(r'^callback/', bot_callback),
 ]

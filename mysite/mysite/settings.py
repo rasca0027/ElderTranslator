@@ -101,3 +101,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Line Bot API
+CHANNEL_ID = 1471049304
+CHANNEL_SECRET = "90e6bb8f67b55ae0f46e291822ce6f38" 
+CHANNEL_MID = "u581fc9e3364833bdd3fe1aec3222ba6c"

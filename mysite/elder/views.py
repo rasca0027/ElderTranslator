@@ -41,5 +41,5 @@ def file_test(request):
 
 
 def bot_callback(request):
-    print request.POST
+    print request.body
     return HttpResponse(status=200)

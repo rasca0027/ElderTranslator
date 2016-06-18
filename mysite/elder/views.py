@@ -42,4 +42,4 @@ def file_test(request):
 
 def bot_callback(request):
     print request.POST
-    return HttpResponse('hello')
+    return HttpResponse(status=200)

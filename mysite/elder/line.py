@@ -3,7 +3,7 @@ import requests
 import json
 
 
-def bot_send_message(to_mid, msg='hi'):
+def bot_send_message(to_mid="u2ef38a8c1f3f1c2c63bdf9c0a629023c", msg='hi'):
 
     headers = {}
     headers['Content-type'] = 'application/json; charset=UTF-8'

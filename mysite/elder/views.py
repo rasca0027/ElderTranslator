@@ -36,7 +36,9 @@ def file_test(request):
     if request.method == 'POST':
         form = TestForm(request.POST, request.FILES)
         print request.POST
+        print request.body
         if form.is_valid():
+            bot_send_message(msg="valid")
             return HttpResponse('thanks')
     else:
         form = TestForm()

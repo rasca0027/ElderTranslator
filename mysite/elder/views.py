@@ -39,7 +39,8 @@ def file_test(request):
         print request.FILES
         if form.is_valid():
             print 'valid'
-            bot_send_message(msg="valid")
+            r = bot_send_message(msg="valid")
+            print r.content
             return HttpResponse('thanks')
     else:
         form = TestForm()

@@ -8,4 +8,5 @@ class GestureForm(ModelForm):
         fields = ['name', 'elder', 'video']
 
 class TestForm(Form):
-    name = FileField()
+    video = FileField()
+    name = CharField(max_length=30)

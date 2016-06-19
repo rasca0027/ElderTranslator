@@ -25,6 +25,6 @@ def bot_send_message(to_mid="u2ef38a8c1f3f1c2c63bdf9c0a629023c", msg='hi'):
     }
 
     body['content'] = content
-    req = requests.post(api, data=json.dumps(body), headers=headers)
+    req = requests.post(api, data=json.dumps(body), headers=headers, verify=False)
     
     return req

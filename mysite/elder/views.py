@@ -42,6 +42,8 @@ def file_test(request):
             r = bot_send_message(msg="valid")
             print r.content
             return HttpResponse('thanks')
+        else:
+            print 'not valid'
     else:
         form = TestForm()
     return render(request, 'test.html', {'form': form})

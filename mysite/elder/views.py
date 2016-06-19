@@ -64,6 +64,6 @@ def bot_callback(request):
 
 
 def bot_test_view(request):
-    r = bot_send_massage(msg='test success')
+    r = bot_send_message(msg='test success')
     print r.content
     return HttpResponse('bot test')

@@ -1,23 +1,49 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import *
-from .models import Family
-from .line import bot_send_message
+from .models import * 
+from .line import *
 
 # Create your views here.
-def index(request):
 
+def file_test(request):
+    
     if request.method == 'POST':
-        form = GestureForm(request.POST, request.FILES)
+        
+        form = TestForm(request.POST, request.FILES)
+        print request.POST
+        print request.FILES
+        
         if form.is_valid():
-            form.save()
-            elder = form.cleaned_data['elder']
-            msg = form.cleaned_data['video']
-            ask_family(elder, msg)
+            
+            print 'valid'
+            
+            # save file and model
+            elder_name = request.POST['name']
+            elder_obj = Elder.objects.get(name=elder_name)
+            upload_video = request.FILES['video']
+            gesture = Gesture(elder=elder_obj,
+                    video=upload_video)
+            gesture.save()
+            
+            # get family 
+            members = Family.objects.filter(elder=elder_obj)
+            for member in members:
+                print member.name
+                line_mid = member.line
+                # send line
+                r = bot_send_video(line_mid, gesture)
+                print r.content
+            
             return HttpResponse('thanks')
+        
+        else:
+            print 'not valid'
+    
     else:
-        form = GestureForm()
-    return render(request, 'name.html', {'form': form})
+        form = TestForm()
+    return render(request, 'test.html', {'form': form})
+
 
 
 def ask_family(name, msg):
@@ -31,23 +57,6 @@ def ask_family(name, msg):
 def send_mail(line_mid, msg):
     bot_send_message(line_mid, msg)
     
-
-def file_test(request):
-    if request.method == 'POST':
-        form = TestForm(request.POST, request.FILES)
-        print request.POST
-        print request.FILES
-        if form.is_valid():
-            print 'valid'
-            r = bot_send_message(msg="valid")
-            print r.content
-            return HttpResponse('thanks')
-        else:
-            print 'not valid'
-    else:
-        form = TestForm()
-    return render(request, 'test.html', {'form': form})
-
 
 def bot_callback(request):
     
@@ -69,3 +78,5 @@ def bot_test_view(request):
     r = bot_send_message(msg='test success')
     print r.content
     return HttpResponse('bot test')
+
+

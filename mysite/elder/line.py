@@ -31,7 +31,7 @@ def bot_send_message(to_mid="u2ef38a8c1f3f1c2c63bdf9c0a629023c", msg='hi'):
     
     return req
 
-def bot_send_video(to_mid="u2ef38a8c1f3f1c2c63bdf9c0a629023c", gesture=0):
+def bot_send_video(gesture, video_url, video_preview_img, to_mid="u2ef38a8c1f3f1c2c63bdf9c0a629023c"):
     
     headers = {}
     headers['Content-type'] = 'application/json; charset=UTF-8'
@@ -53,8 +53,8 @@ def bot_send_video(to_mid="u2ef38a8c1f3f1c2c63bdf9c0a629023c", gesture=0):
     content = {
         "contentType": 3,
         "toType": 1,
-        "originalContentUrl": "http://127.0.0.1:8000/media/upload/sample_movie_4PeSPlq.mp4",
-        "previewImageUrl": "http://www.barransclass.com/phys1090/circus/Haynes_K/penguin.jpg"
+        "originalContentUrl": video_url,
+        "previewImageUrl": video_preview_img 
     }
 
     body['content'] = content

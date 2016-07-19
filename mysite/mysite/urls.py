@@ -13,4 +13,4 @@ urlpatterns = [
     url(r'^test/', file_test),
     url(r'^callback/', bot_callback),
     url(r'^bot_test/', bot_test_view),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 

@@ -1,3 +1,5 @@
+# coding=UTF-8
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import *
@@ -5,6 +7,9 @@ from .models import *
 from .line import *
 
 # Create your views here.
+
+def get_youtube(video_obj):
+    pass
 
 def file_test(request):
     
@@ -32,7 +37,8 @@ def file_test(request):
                 print member.name
                 line_mid = member.line
                 # send line
-                r = bot_send_video(line_mid, gesture)
+                video_url, video_preview_img = get_youtube(upload_video)
+                r = bot_send_video(line_mid, gesture, video_url, video_preview_img)
                 print r.content
             
             return HttpResponse('thanks')
@@ -45,18 +51,6 @@ def file_test(request):
     return render(request, 'test.html', {'form': form})
 
 
-
-def ask_family(name, msg):
-    # query family member
-    members = Family.objects.filter(elder=name)
-    for member in members:
-        print member.name
-        send_mail(member.line, msg)
-    
-
-def send_mail(line_mid, msg):
-    bot_send_message(line_mid, msg)
-    
 
 def bot_callback(request):
     
@@ -75,8 +69,10 @@ def bot_callback(request):
 
 
 def bot_test_view(request):
+
     r = bot_send_message(msg='test success')
     print r.content
     return HttpResponse('bot test')
+
 
 

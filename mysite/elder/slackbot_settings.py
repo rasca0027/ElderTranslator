@@ -1,2 +1,0 @@
-API_TOKEN = "xoxp-44784648214-44792256597-51490533861-26bc89b375"
-DEFAULT_REPLY = "Sorry but I didn't understand you"

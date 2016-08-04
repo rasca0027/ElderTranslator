@@ -9,4 +9,4 @@ slacker==0.9.16
 static3==0.7.0
 websocket-client==0.37.0
 psycopg2
-google-api-python-client
+PyVimeo==0.3.4
